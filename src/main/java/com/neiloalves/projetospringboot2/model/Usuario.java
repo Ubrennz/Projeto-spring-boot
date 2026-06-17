@@ -1,8 +1,14 @@
 package com.neiloalves.projetospringboot2.model;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "usuario")
 public class Usuario {
+    @Id // -> indicando qual vai ser a chave primaria do db
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // estrategia de auto encremento
     private Long id;
     private String nome;
     private String email;
