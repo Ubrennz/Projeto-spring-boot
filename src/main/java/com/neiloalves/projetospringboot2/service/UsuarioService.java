@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service // registrando no mecanismo de injeção de dependecia, como componente do spring
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;

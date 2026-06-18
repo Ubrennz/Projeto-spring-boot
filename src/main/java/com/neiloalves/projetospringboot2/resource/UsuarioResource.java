@@ -32,6 +32,10 @@ public class UsuarioResource {
     // endpoint para pegar o usuario pelo id
     @GetMapping(value = "{id}") // aqui fala q vai aceitar um id dentro da URL
     public ResponseEntity<Usuario> findById(@PathVariable Long id) {
+        // para receber o id dentro do endpoint do controlador rest,
+        // eu tenho q declarar aqui um argumento, q seria o Long id,
+        // só q pra spring aceitar esse id e considerar ele como parametro
+        // q vai chegar da URl, tem q colocar na frente o @PathVariable
         Usuario usuario = usuarioService.findById(id);
         return ResponseEntity.ok().body(usuario);
     }
