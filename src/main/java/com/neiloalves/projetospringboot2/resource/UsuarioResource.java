@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/usuarios")// nome do recurso
 public class UsuarioResource {
     @Autowired
-    private UsuarioService usuarioService;
+    private  UsuarioService usuarioService;
 
     // metodo para ser um endpoint para acessar os usuários
     // ResponseEntity<T> q é um tipo especifico do spring para retornar respostas de requesição web

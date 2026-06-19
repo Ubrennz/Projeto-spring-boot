@@ -2,6 +2,8 @@ package com.neiloalves.projetospringboot2.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +16,11 @@ public class Usuario {
     private String email;
     private String telefone;
     private String senha;
+
+    // nome do atributo q tem lá do outro lado da associação (tabela pedido)
+    // ele está mapeado pela entidade usuario, lá do outro lado
+    @OneToMany(mappedBy = "usuario") // 1 usuario tem varios pedidos
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Usuario() {
     }
@@ -64,6 +71,10 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
     @Override
