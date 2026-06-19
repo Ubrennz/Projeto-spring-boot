@@ -1,10 +1,20 @@
 package com.neiloalves.projetospringboot2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+// quando a pessoa faz uma chamada de um pedido, automaticamente o JPA pega o usuário associado a ele
+// Isso não acontece quando é uma relação OneToMany, o JPA não carrega os objetos do lado do Many por padrão
+// isso é chamado de "Lazy Loading", isso para não estourar a mémoria do pc
+// Só dar pra chamar os do lado para Many se fizer uma chamado do lado do Many
+
+// o JsonIgnore vai ignorar a associação feita
+// EX: o @JsonIgnore está na classe Usuario, então lá na chamada, não vai aparecer a lista de pedidos associadas ao objeto Usuario,
+// Agr se for na classe Pedido, lá na chamada vai ser ignorado a classe usuario
 
 @Entity
 @Table(name = "usuario")
@@ -19,6 +29,7 @@ public class Usuario {
 
     // nome do atributo q tem lá do outro lado da associação (tabela pedido)
     // ele está mapeado pela entidade usuario, lá do outro lado
+    // @JsonIgnore // para parar o loop de chamdas no json
     @OneToMany(mappedBy = "usuario") // 1 usuario tem varios pedidos
     private List<Pedido> pedidos = new ArrayList<>();
 
