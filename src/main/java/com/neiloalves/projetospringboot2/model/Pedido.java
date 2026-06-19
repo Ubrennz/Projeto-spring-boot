@@ -2,6 +2,7 @@ package com.neiloalves.projetospringboot2.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.neiloalves.projetospringboot2.enums.StatusPedido;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -25,6 +26,8 @@ public class Pedido {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momento;
 
+    private Integer statusPedido;
+
     @JsonIgnore
     @ManyToOne // 1 usuário pode ter varios pedidos
     @JoinColumn(name = "usuario_id") // fazendo a associação da chave estrangeria, e dando o nome para essa chave estrangeria
@@ -34,9 +37,10 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momento, Usuario usuario) {
+    public Pedido(Long id, Instant momento, StatusPedido statusPedido, Usuario usuario) {
         this.id = id;
         this.momento = momento;
+        setStatusPedido(statusPedido);
         this.usuario = usuario;
     }
 
@@ -54,6 +58,16 @@ public class Pedido {
 
     public void setMomento(Instant momento) {
         this.momento = momento;
+    }
+
+    public StatusPedido getStatusPedido() {
+        return StatusPedido.valueOf(statusPedido);
+    }
+
+    public void setStatusPedido(StatusPedido statusPedido) {
+        if (statusPedido != null) {
+            this.statusPedido = statusPedido.getCode();
+        }
     }
 
     public Usuario getUsuario() {
