@@ -1,8 +1,10 @@
 package com.neiloalves.projetospringboot2.config;
 
 import com.neiloalves.projetospringboot2.enums.StatusPedido;
+import com.neiloalves.projetospringboot2.model.Categoria;
 import com.neiloalves.projetospringboot2.model.Pedido;
 import com.neiloalves.projetospringboot2.model.Usuario;
+import com.neiloalves.projetospringboot2.repository.CategoriaRepository;
 import com.neiloalves.projetospringboot2.repository.PedidoRepository;
 import com.neiloalves.projetospringboot2.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,12 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private UsuarioRepository usuarioRepository; // injeção de dependencia
+
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -30,7 +36,11 @@ public class TestConfig implements CommandLineRunner {
         Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
         Pedido p2 = new Pedido(null, Instant.now(), StatusPedido.ESPERANDO_PAGAMENTO, u2);
 
+        Categoria c1 = new Categoria(null, "Bonitos");
+        Categoria c2 = new Categoria(null, "Livros");
+
         usuarioRepository.saveAll(Arrays.asList(u1, u2));
         pedidoRepository.saveAll(Arrays.asList(p1, p2));
+        categoriaRepository.saveAll(Arrays.asList(c1, c2));
     }
 }
