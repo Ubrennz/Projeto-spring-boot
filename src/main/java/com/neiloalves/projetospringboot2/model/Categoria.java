@@ -2,8 +2,8 @@ package com.neiloalves.projetospringboot2.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categoria")
@@ -13,8 +13,8 @@ public class Categoria {
     private Long id;
     private String nome;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<Produto> produtos = new ArrayList<>();
+    @Transient
+    private Set<Produto> produtos = new HashSet<>();
 
     public Categoria() {
     }
@@ -40,7 +40,7 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<Produto> getProdutos() {
+    public Set<Produto> getProdutos() {
         return produtos;
     }
 }
