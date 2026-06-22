@@ -1,0 +1,2 @@
+sempre q for fazer uma chave primaria composta, a classe auxiliar sempre deve
+estar dentro desse package (pk)
