@@ -24,8 +24,19 @@ public class Produto {
     // set<> é uma interface, não pode ser instanciada, por isso q instanciamos o HashSet<>()
 
     // pq instanciamos? pq a coleção deve començar vazia, e não nula
-    @Transient // annotation do JPA inpede q o JPA teste interprete isso daqui
-    private Set<Categoria> categorias = new HashSet<>(); // Set<> faz com q
+    // @Transient // annotation do JPA inpede q o JPA teste interprete isso daqui
+
+    @ManyToMany // Como é uma nova tabela, produto_categoria vai ter a chave fk das duas tabelas
+    @JoinTable(name = "produto_categoria",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    private Set<Categoria> categorias = new HashSet<>();
+
+    // qual ver ser o nome da tabela, e quais vão ser as chaves fk q associar a tabela de produto com a tabela de categoria
+
+    // "name =" vai ser o nome da tabela de associação no banco de dados
+    // "joinColumns = " um conceita parecido com o ManyToOne
+    // "inverseJoinColumns =" definir qual vai ser a chave fk da outra entidade, como eu estou na classe Produto, a outra entidade é a Categoria
 
     public Produto() {
     }

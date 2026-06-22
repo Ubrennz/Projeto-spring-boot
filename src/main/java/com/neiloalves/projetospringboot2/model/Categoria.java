@@ -1,5 +1,6 @@
 package com.neiloalves.projetospringboot2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -13,7 +14,8 @@ public class Categoria {
     private Long id;
     private String nome;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categorias")
     private Set<Produto> produtos = new HashSet<>();
 
     public Categoria() {
