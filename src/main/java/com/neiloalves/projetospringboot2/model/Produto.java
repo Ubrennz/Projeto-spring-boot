@@ -26,11 +26,13 @@ public class Produto {
     // pq instanciamos? pq a coleção deve començar vazia, e não nula
     // @Transient // annotation do JPA inpede q o JPA teste interprete isso daqui
 
-    @ManyToMany // Como é uma nova tabela, produto_categoria vai ter a chave fk das duas tabelas
-    @JoinTable(name = "produto_categoria",
+    @ManyToMany
+    @JoinTable(name = "categoria_produto",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private Set<Categoria> categorias = new HashSet<>();
+
+    // Como é uma nova tabela, produto_categoria vai ter a chave fk das duas tabelas
 
     // qual ver ser o nome da tabela, e quais vão ser as chaves fk q associar a tabela de produto com a tabela de categoria
 
