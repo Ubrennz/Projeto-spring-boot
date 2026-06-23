@@ -40,6 +40,9 @@ public class Produto {
     // "joinColumns = " um conceita parecido com o ManyToOne
     // "inverseJoinColumns =" definir qual vai ser a chave fk da outra entidade, como eu estou na classe Produto, a outra entidade é a Categoria
 
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens = new HashSet<>();
+
     public Produto() {
     }
 
@@ -93,5 +96,15 @@ public class Produto {
 
     public Set<Categoria> getCategorias() {
         return categorias;
+    }
+
+    @JsonIgnore
+    public Set<Pedido> getItens() {
+        Set<Pedido> pedidos = new HashSet<>();
+
+        for (ItemPedido itemPedido : itens) {
+            pedidos.add(itemPedido.getPedido());
+        }
+        return pedidos;
     }
 }

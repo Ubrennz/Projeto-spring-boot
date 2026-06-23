@@ -36,6 +36,11 @@ public class Pedido {
     private Usuario usuario;
 
     // no ItemPedido temno o ID na vdd, e o ID por sua ver é q tem o Pedido
+    /*
+    * pq é id.pedido?
+    * é pq o ItemPedido tem um id, e esse id é do tipo ItemPedidoPk
+    *  e lá no ItemPedidoPk tem o atributo pedido do tipo Pedido
+     */
     @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> itens = new HashSet<>();
 
