@@ -1,16 +1,16 @@
 package com.neiloalves.projetospringboot2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.neiloalves.projetospringboot2.model.pk.ItemPedidoPk;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "item_pedido")
 public class ItemPedido {
-    @EmbeddedId
-    private ItemPedidoPk id; // identificador correspondente a chave primaria
+    @EmbeddedId // precisa ser instanciada se não vai dar nullPointExecption
+    private ItemPedidoPk id = new ItemPedidoPk(); // identificador correspondente a chave primaria
     private Integer quantidade;
     private Double preco;
 
@@ -23,7 +23,11 @@ public class ItemPedido {
         this.quantidade = quantidade;
         this.preco = preco;
     }
-
+    // na plataforma java EE oq vale, é o metodo get, ai vamos ter q colocar aqui, no
+    // getPedido
+    // esse getPedido é oq chava o pedido associado a esse Item de Pedido, ai o pedido
+    // por sua vez q chamava o ItemPedido dnv, e ficava nesse loop infinito
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }

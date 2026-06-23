@@ -6,7 +6,9 @@ import com.neiloalves.projetospringboot2.enums.StatusPedido;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 // quando a pessoa faz uma chamada de um pedido, automaticamente o JPA pega o usuário associado a ele
 // por conta da relação ManyToOne. Isso é padrão do JPA. Isso usando o @JsonIgnore em um dos lados
@@ -33,6 +35,9 @@ public class Pedido {
     @JoinColumn(name = "usuario_id") // fazendo a associação da chave estrangeria, e dando o nome para essa chave estrangeria
     private Usuario usuario;
 
+    // no ItemPedido temno o ID na vdd, e o ID por sua ver é q tem o Pedido
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido() {
     }
@@ -76,6 +81,10 @@ public class Pedido {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Set<ItemPedido> getItens() {
+        return itens;
     }
 
     @Override

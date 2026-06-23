@@ -1,14 +1,8 @@
 package com.neiloalves.projetospringboot2.config;
 
 import com.neiloalves.projetospringboot2.enums.StatusPedido;
-import com.neiloalves.projetospringboot2.model.Categoria;
-import com.neiloalves.projetospringboot2.model.Pedido;
-import com.neiloalves.projetospringboot2.model.Produto;
-import com.neiloalves.projetospringboot2.model.Usuario;
-import com.neiloalves.projetospringboot2.repository.CategoriaRepository;
-import com.neiloalves.projetospringboot2.repository.PedidoRepository;
-import com.neiloalves.projetospringboot2.repository.ProdutoRepository;
-import com.neiloalves.projetospringboot2.repository.UsuarioRepository;
+import com.neiloalves.projetospringboot2.model.*;
+import com.neiloalves.projetospringboot2.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -62,6 +59,11 @@ public class TestConfig implements CommandLineRunner {
 
         // para salvar novamente os produtos com as novas associações
         produtoRepository.saveAll(Arrays.asList(pd1, pd2));
+
+        ItemPedido oi1 = new ItemPedido(p1, pd1, 2, pd1.getPreco());
+        ItemPedido oi2 = new ItemPedido(p2, pd2, 1, pd2.getPreco());
+
+        itemPedidoRepository.saveAll(Arrays.asList(oi1, oi2));
 
     }
 }
