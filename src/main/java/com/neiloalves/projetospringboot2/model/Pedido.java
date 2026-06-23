@@ -44,6 +44,13 @@ public class Pedido {
     @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> itens = new HashSet<>();
 
+    // É q no caso de mapeamento 1 para 1, nos estamos mapeando as duas
+    // entidades para ter o msm ID, se o pedido for código 5, o pagamento
+    // desse pedido tbm vai ter código 5
+    // e no caso do mapeamento 1 para 1 com msm ID é obrigatorio usar o "cascade = CascadeType.ALL"
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Pagamento pagamento;
+
     public Pedido() {
     }
 
@@ -90,6 +97,14 @@ public class Pedido {
 
     public Set<ItemPedido> getItens() {
         return itens;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
     }
 
     @Override

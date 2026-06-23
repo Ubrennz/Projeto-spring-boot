@@ -65,5 +65,16 @@ public class TestConfig implements CommandLineRunner {
 
         itemPedidoRepository.saveAll(Arrays.asList(oi1, oi2));
 
+        Pagamento pay1 = new Pagamento(null, Instant.now(), p1);
+        p1.setPagamento(pay1);
+
+        /*
+        * Para vc salvar um objeto depedente 1 para 1, vc não vai chamar o repository do proprio objeto
+        * ai vamos fazer a associação de mão dupla em memoria, ai chamamos o .setPagamento do pedido associado
+        * e dps salvamos o pedido, ai o JPA vai tratar de o pagamento desse pedido        *
+        */
+
+        pedidoRepository.save(p1);
+
     }
 }
