@@ -1,6 +1,7 @@
 package com.neiloalves.projetospringboot2.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -16,6 +17,7 @@ public class Pagamento {
 
     // a pessoa faz isso na classe dependente, já q o Pedido é a classe principal
     // e pode ter pedidos sem pagamento
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Pedido pedido;

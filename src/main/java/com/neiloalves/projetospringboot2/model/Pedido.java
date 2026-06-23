@@ -107,6 +107,17 @@ public class Pedido {
         this.pagamento = pagamento;
     }
 
+    // soma de todos os valores subtotais do ItemPedido
+    public Double getTotal() {
+        double somaTotal = 0.0;
+
+        for (ItemPedido itemPedido : itens) {
+            somaTotal += itemPedido.getSubTotal();
+        }
+
+        return somaTotal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Pedido pedido)) return false;

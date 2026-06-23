@@ -59,4 +59,9 @@ public class ItemPedido {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
+
+    // aqui no java EE oq vale é o get, ai usamos o getSubTotal
+    public Double getSubTotal() {
+        return preco * quantidade;
+    }
 }
