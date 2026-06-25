@@ -43,6 +43,12 @@ public class UsuarioResource {
         return ResponseEntity.ok().body(usuario);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario usuario) {
+        usuario = usuarioService.update(id, usuario);
+        return ResponseEntity.ok().body(usuario);
+    }
+
     // não dar para deletar usuarios com pedidos relacionados
     // pq os pedidos ficariam sem o usuário
 

@@ -26,6 +26,21 @@ public class UsuarioService {
         return usuario.get(); // a operação .get() do optional vai retornar o objeto do tipo usuario q tiver dentro do optional
     }
 
+    public void updateData(Usuario entity, Usuario usuario) {
+        entity.setNome(usuario.getNome());
+        entity.setEmail(usuario.getEmail());
+        entity.setTelefone(usuario.getTelefone());
+        // ai a pessoa diz quais campos devem ser atualizados
+    }
+
+    // vai receber um id para buscar o usuário q a genter quer atualizar
+    // e tbm vai receber um usuario com esses novos dados, para atualizar os dados antigos
+    public Usuario update(Long id, Usuario usuario) {
+        Usuario entity = usuarioRepository.getReferenceById(id); // pegando o usuário q desejamos atualizar pelo id
+        updateData(entity, usuario);
+        return usuarioRepository.save(entity);
+    }
+
     public void delete(Long id) {
         usuarioRepository.deleteById(id);
     }
