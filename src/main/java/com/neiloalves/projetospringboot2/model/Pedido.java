@@ -30,7 +30,6 @@ public class Pedido {
 
     private Integer statusPedido;
 
-    @JsonIgnore
     @ManyToOne // 1 usuário pode ter varios pedidos
     @JoinColumn(name = "usuario_id") // fazendo a associação da chave estrangeria, e dando o nome para essa chave estrangeria
     private Usuario usuario;

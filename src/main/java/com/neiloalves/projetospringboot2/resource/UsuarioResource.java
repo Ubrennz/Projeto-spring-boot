@@ -3,11 +3,9 @@ package com.neiloalves.projetospringboot2.resource;
 import com.neiloalves.projetospringboot2.model.Usuario;
 import com.neiloalves.projetospringboot2.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,11 @@ import java.util.List;
 public class UsuarioResource {
     @Autowired
     private  UsuarioService usuarioService;
+
+    @PostMapping  // @RequestBody vai trasnformar o Json em obj
+    public ResponseEntity<Usuario> insert(@RequestBody Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.insert(usuario));
+    }
 
     // metodo para ser um endpoint para acessar os usuários
     // ResponseEntity<T> q é um tipo especifico do spring para retornar respostas de requesição web

@@ -13,6 +13,10 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    public Usuario insert(Usuario usuario) {
+        return usuarioRepository.save(usuario); // o usuarioRepository.save retornar o obj
+    }
+
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }

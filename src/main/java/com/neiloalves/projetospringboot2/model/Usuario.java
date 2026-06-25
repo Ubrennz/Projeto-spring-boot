@@ -30,6 +30,7 @@ public class Usuario {
     // nome do atributo q tem lá do outro lado da associação (tabela pedido)
     // ele está mapeado pela entidade usuario, lá do outro lado
     // @JsonIgnore // para parar o loop de chamdas no json
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario") // 1 usuario tem varios pedidos
     private List<Pedido> pedidos = new ArrayList<>();
 

@@ -32,7 +32,7 @@ public class ItemPedido {
         return id.getPedido();
     }
 
-    public void setQuantidade(Pedido pedido) {
+    public void setPedido(Pedido pedido) {
         id.setPedido(pedido);
     }
 
