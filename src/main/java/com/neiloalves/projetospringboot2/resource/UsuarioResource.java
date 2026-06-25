@@ -42,4 +42,16 @@ public class UsuarioResource {
         Usuario usuario = usuarioService.findById(id);
         return ResponseEntity.ok().body(usuario);
     }
+
+    // não dar para deletar usuarios com pedidos relacionados
+    // pq os pedidos ficariam sem o usuário
+
+    // Void pq a respostas dessa requisição não vai retonar nenhum corpo
+    // .noContent() vai retonar uma resposta vazia, e o código HTTP é o 204, q o .noContent() vai tratar isso pra gente
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        usuarioService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

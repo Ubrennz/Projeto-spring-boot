@@ -25,4 +25,8 @@ public class UsuarioService {
         Optional<Usuario> usuario = usuarioRepository.findById(id); // vai retonar um objeto optinal, do tipo Usuario
         return usuario.get(); // a operação .get() do optional vai retornar o objeto do tipo usuario q tiver dentro do optional
     }
+
+    public void delete(Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }
