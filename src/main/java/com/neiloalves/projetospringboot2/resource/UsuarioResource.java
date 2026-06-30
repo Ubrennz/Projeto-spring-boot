@@ -33,7 +33,7 @@ public class UsuarioResource {
     }
 
     // endpoint para pegar o usuario pelo id
-    @GetMapping(value = "{id}") // aqui fala q vai aceitar um id dentro da URL
+    @GetMapping(value = "/{id}") // aqui fala q vai aceitar um id dentro da URL
     public ResponseEntity<Usuario> findById(@PathVariable Long id) {
         // para receber o id dentro do endpoint do controlador rest,
         // eu tenho q declarar aqui um argumento, q seria o Long id,
